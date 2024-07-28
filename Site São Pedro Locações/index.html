@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locação de Mesas e Cadeiras</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./img/Screenshot_20240726-221220.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/locacacao.css">   
+
+</head>
+<body>
+    <header>
+        <h1>São Pedro Locações</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Conheça Nossos Serviços!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">Sobre Nós</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Nossos Serviços</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalogo.html">Catálogo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="privacidade.html">Política de Privacidade</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/Screenshot_20240725-204519.png" class="img1" alt="Imagem 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Foto de Guilherme(5).jpg" class="img3" alt="Imagem 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Screenshot_20240725-204503.png" class="img4" alt="Imagem 4">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Screenshot_20240725-204805.png" class="img5" alt="Imagem 5">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Screenshot_20240725-204608.png" class="img6" alt="Imagem 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Screenshot_20240725-204658.png" class="img7" alt="Imagem 7">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Screenshot_20240725-204642.png" class="img8" alt="Imagem 8">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Screenshot_20240725-204744.png" class="img9" alt="Imagem 9">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Próximo</span>
+            </a>
+        </div>
+        <div class="card" id="about">
+            <h2>Sobre Nós</h2>
+            <p>Fundada em 2021, a São Pedro Locações é uma empresa especializada em proporcionar momentos memoráveis através da locação de chácaras, jogos de mesa e brinquedos para festas. Com sede em São Carlos, SP, nossa missão é oferecer serviços de alta qualidade que transformem eventos em experiências únicas e inesquecíveis.</p>
+        </div>
+        <div class="card" id="services">
+            <h2>Nossos Serviços</h2>
+            <ul>
+                <li>Locação de Jogos de mesas.</li>
+                <li>Locação de Chácaras para o final de semana.</li>
+                <li>Carvões Médios e Grandes.</li>
+                <li>Capas de Mesas.</li>
+                <li>Cobre Manche.</li>
+                <li>Bebidas.</li>
+                <li>Cama elástica e Piscina de Bolinha (apenas para aluguéis nas nossas Chácaras).</li>
+                <button class="btn-catalogo" onclick="window.location.href = 'catalogo.html';">Ver Catálogo</button>
+
+            </ul>
+        </div>
+        <div class="card" id="contact">
+            <h2>Contatos</h2>
+            <p>WhatsApp: (16) 99798-0920</p>
+            <p>Facebook: São Pedro Locações</p>
+            <p>Instagram: São Pedro Locações</p>
+        </div>
+        <div class="consent-message" id="consent-message">
+            Você aceitou os cookies presentes no site.
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Estamos de acordo com a nossa<a href="privacidade.html" target="_blank">Política de Privacidade</a>e, ao continuar navegando, 
+        você concorda com estas condições.</p>
+    </footer>
+    <div id="cookie-consent" class="modal">
+        <div class="modal-content">
+            <p>Utilizamos cookies essenciais e tecnologias semelhantes de acordo com a nossa 
+                <a href="https://politicadeprivacidadesitesaopedro.vercel.app/" target="_blank">Política de Privacidade</a> 
+                e, ao continuar navegando, você concorda com estas condições.</p>
+            <button onclick="acceptCookies()">Aceitar</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/locacao.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chácara São Pedro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+        .header {
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 12px;
+            font-size: 27px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .container {
+            margin-top: 60px;
+            padding: 20px;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .carousel img {
+            width: 100%;
+            display: block;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            border: none;
+            border-radius: 30%;
+            cursor: pointer;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        .carousel-button.prev {
+            left: 10px;
+        }
+        .carousel-button.next {
+            right: 10px;
+        }
+        .carousel-button:hover {
+            background-color: #0056b3;
+        }
+        .carousel-button:focus {
+            outline: none;
+        }
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 17px;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Chácara São Pedro</div>
+    </div>
+    <div class="container">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <img src="img/Foto de Guilherme.jpg" alt="Chácara São Pedro - 1">
+                <img src="img/Foto de Guilherme(2).jpg" alt="Chácara São Pedro - 2">
+                <img src="img/Foto de Guilherme(3).jpg" alt="Chácara São Pedro - 3">
+                <img src="img/Foto de Guilherme(4).jpg" alt="Chácara São Pedro - 4">
+                <img src="img/Foto de Guilherme(5).jpg" alt="Chácara São Pedro - 5">
+                <img src="img/Foto de Guilherme(6).jpg" alt="Chácara São Pedro - 6">
+            </div>
+            <button class="carousel-button prev" onclick="prevSlide()">❮</button>
+            <button class="carousel-button next" onclick="nextSlide()">❯</button>
+        </div>
+    </div>
+    <button class="back-button" onclick="window.location.href='catalogo.html'">Voltar</button>
+
+    <script>
+        const carouselInner = document.querySelector('.carousel-inner');
+        let index = 0;
+
+        function showSlide() {
+            const slides = document.querySelectorAll('.carousel-inner img');
+            const totalSlides = slides.length;
+            if (index >= totalSlides) index = 0;
+            if (index < 0) index = totalSlides - 1;
+            carouselInner.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function nextSlide() {
+            index++;
+            showSlide();
+        }
+
+        function prevSlide() {
+            index--;
+            showSlide();
+        }
+
+        // Optional: Auto-play slides
+        setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    </script>
+</body>
+</html>

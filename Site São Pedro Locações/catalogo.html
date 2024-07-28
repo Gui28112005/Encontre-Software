@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./img/Screenshot_20240726-221220.png">
+    <link rel="stylesheet" href="css/catalogo.css">
+    <title>São Pedro Locações</title>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Catálogo de Produtos</div>
+    </div>
+    <div class="container">
+        <div class="catalogo">
+            <div class="produto" data-nome="Jogos de Mesa">
+                <img src="img/Screenshot_20240725-204805.png" alt="Jogos de Mesa">
+                <div class="produto-info">
+                    <h2>Jogos de Mesa</h2>
+                    <p>Inclui uma mesa e quatro cadeiras, ideal para encontros e diversão em grupo.</p>
+                    <p class="preco">Disponível</p>
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                    <input type="number" class="quantidade" value="1" min="1">
+                    <p class="preco1">Adicione quantidade de Jogos, Cada Jogo Contém 1 mesa 4 Cadeiras.</p>
+                </div>
+            </div>
+            <div class="produto" data-nome="Chácara São Santo Antônio">
+                <img src="img/Screenshot_20240725-204503.png" alt="Chácara São Santo Antônio">
+                <div class="produto-info">
+                    <h2>Chácara São Santo Antônio</h2>
+                    <p>Espaçosa chácara com três quartos, área de lazer e piscina para momentos de relaxamento.</p>
+                    <p class="preco">Disponível</p>
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                    <button onclick="window.location.href='chacarasantoantonio.html'">Ver Fotos</button>
+                </div>
+            </div>
+            <div class="produto" data-nome="Chácara São Pedro">
+                <img src="img/Screenshot_20240725-204519.png" alt="Chácara São Pedro">
+                <div class="produto-info">
+                    <h2>Chácara São Pedro</h2>
+                    <p>Perfeita para um fim de semana em família, com dois quartos e uma agradável piscina.</p>
+                    <p class="preco">Disponível</p>
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                    <button onclick="window.location.href='chacarasaopedro.html'">Ver Fotos</button>
+                </div>
+            </div>
+            <div class="produto" data-nome="Carvão Eucalipto 7 Kg">
+                <img src="img/Screenshot_20240725-204658.png" alt="Carvão Eucalipto 7 Kg">
+                <div class="produto-info">
+                    <h2>Carvão Eucalipto 7 Kg</h2>
+                    <p>Carvão de alta qualidade, ideal para churrascos e eventos ao ar livre.</p>
+                    <p class="preco">Disponível</p>
+                    <input type="number" class="quantidade" value="1" min="1">
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                    <p class="preco1">adicione a quantidade que deseja.</p>
+                </div>
+            </div>
+            <div class="produto" data-nome="Toalhas">
+                <img src="img/Screenshot_20240725-204744.png" alt="Toalhas">
+                <div class="produto-info">
+                    <h2>Toalhas</h2>
+                    <p>Toalhas macias e absorventes, perfeitas para qualquer ocasião.</p>
+                    <p class="preco">Disponível</p>
+                    <input type="number" class="quantidade" value="1" min="1">
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                    <p class="preco1">adicione a quantidade que deseja.</p>
+                </div>
+            </div>
+            <div class="produto" data-nome="Cobertor de Mesa">
+                <img src="img/Screenshot_20240725-204714.png" alt="Cobertor de Mesa">
+                <div class="produto-info">
+                    <h2>Cobertor de Mesa</h2>
+                    <p>Protege e embeleza suas mesas em eventos e refeições especiais.</p>
+                    <p class="preco">Disponível</p>
+                    <input type="number" class="quantidade" value="1" min="1">
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                    <p class="preco1">adicione a quantidade que deseja.</p>
+                </div>
+            </div>
+            <div class="produto" data-nome="Piscina de Bolinha">
+                <img src="img/Screenshot_20240725-204608.png" alt="Piscina de Bolinha">
+                <div class="produto-info">
+                    <h2>Piscina de Bolinha</h2>
+                    <p>Diversão garantida para crianças com esta piscina cheia de bolinhas coloridas.</p>
+                    <p class="preco">Disponível</p>
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="produto" data-nome="Carvão Eucalipto 3 Kg">
+                <img src="img/Screenshot_20240725-204543.png" alt="Carvão Eucalipto 3 Kg">
+                <div class="produto-info">
+                    <h2>Carvão Eucalipto 3 Kg</h2>
+                    <p>Versão menor do carvão de eucalipto, ideal para churrascos menores.</p>
+                    <p class="preco">Disponível</p>
+                    <input type="number" class="quantidade" value="1" min="1">
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                    <p class="preco1">adicione a quantidade que deseja.</p>
+                </div>
+            </div>
+            <div class="produto" data-nome="Cama Elástica Maior">
+                <img src="img/Screenshot_20240725-204642.png" alt="Cama Elástica Maior">
+                <div class="produto-info">
+                    <h2>Cama Elástica Maior</h2>
+                    <p>Cama elástica de grandes dimensões, ideal para diversão em família e amigos.</p>
+                    <p class="preco">Disponível</p>
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="produto" data-nome="Cama Elástica 2,44 MT">
+                <img src="img/Screenshot_20240725-204625.png" alt="Cama Elástica 2,44 MT">
+                <div class="produto-info">
+                    <h2>Cama Elástica 2,44 MT</h2>
+                    <p>Cama elástica com 2,44 metros de diâmetro, ideal para atividades recreativas.</p>
+                    <p class="preco">Disponível</p>
+                    <button onclick="adicionarAoCarrinho(this)">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button onclick="finalizar()">Finalizar Pedido de Orçamento</button>
+        </div>
+        <div class="carrinho">
+            <h2>Produtos Selecionados</h2>
+            <ul class="carrinho-lista" id="carrinho-lista"></ul>
+            <div class="carrinho-total" id="carrinho-total">Total de itens: 0</div>
+        </div>
+        <button class="back-button" onclick="window.location.href='index.html'">Voltar</button>
+    </div>
+</body>
+</html>
