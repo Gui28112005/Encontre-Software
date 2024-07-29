@@ -13,14 +13,14 @@
             }
 
             if (produtosAdicionados.has(nome)) {
-                alert(`${nome} já foi adicionado ao carrinho.`);
+                alert(`${nome} já foi adicionado a lista.`);
                 return;
             }
 
             carrinho.push({ nome, quantidade });
             produtosAdicionados.add(nome);
             atualizarCarrinho();
-            alert(`${nome} (${quantidade}) adicionado ao carrinho!`);
+            alert(`${nome} (${quantidade}) adicionado a lista!`);
         }
 
         function atualizarCarrinho() {
@@ -59,7 +59,7 @@
 
         function finalizar() {
     if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio.');
+        alert('Sua lista está vazia.');
         return;
     }
 
