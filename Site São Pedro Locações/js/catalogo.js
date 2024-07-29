@@ -63,7 +63,7 @@
         return;
     }
 
-    const numeroWhatsApp = '+5516994392545'; // Número de WhatsApp formatado
+    const numeroWhatsApp = '+5516997980920'; // Número de WhatsApp formatado
     const mensagem = carrinho.map(item => `${item.nome}: ${item.quantidade}`).join('\n');
     const textoMensagem = `Olá, gostaria de solicitar um orçamento para os seguintes produtos:\n\n${mensagem}`;
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(textoMensagem)}`;
