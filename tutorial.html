@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="42x42" href="./img/web_hi_res_512.png">
+  <title>encontre</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/tutorial.css">
+  <script src="js/tutorial.js" defer></script>
+</head>
+<body>
+
+  <!-- Header fixo -->
+  <div class="header">
+    <div class="header-logo">
+      <img src="./img/web_hi_res_512.png" alt="Logo" class="header-icon">
+      <span class="header-text"> Ajuda</span>
+    </div>
+    
+    <button class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="header-buttons">
+      <button onclick="window.location.href='index.html'">Início</button>
+    </div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <h1>Como Adicionar Fotos Do Seu Comércio?</h1>
+
+    <div id="image-container" class="image-container">
+      <img src="./img/imagepasso1.png" alt="Imagem 1">
+      <img src="./img/imagepasso2.png" alt="Imagem 2">
+      <img src="./img/Captura de tela 2025-02-23 221929.png" alt="Imagem 3">
+    </div>
+
+    <div class="button-container">
+      <button id="back-to-form-button">Voltar para o Formulário</button>
+      <button id="go-to-site-button">Ir para o Site</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: linear-gradient(135deg, rgba(0, 119, 255, 0.607), rgb(0, 0, 0)); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+          <img src="./img/web_hi_res_512.png" alt="Logo" style="height: 30px; margin-right: 10px;">
+          <span style="font-weight: 300; font-size: 1.2em;">Encontre Tecnologia</span>
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <div style="width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>SOBRE NÓS</strong>
+          <a href="sobre.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Sobre Nós</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>PRECISA DE AJUDA?</strong>
+          <a href="ajuda.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Ajuda</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>LEGAL</strong>
+          <a href="termos.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Termos de uso</a>
+          <a href="privacidade.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Política de privacidade</a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 20px;">
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <p style="font-size: 0.9em;">&copy; 2025 The Encontre Tecnologia Company. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

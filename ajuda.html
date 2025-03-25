@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="42x42" href="./img/web_hi_res_512.png">
+  <title>encontre</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="css/ajuda.css">
+<script src="js/ajuda.js" defer></script>
+</head>
+<body>
+
+  <!-- Header fixo -->
+  <div class="header">
+    <div class="header-logo">
+      <img src="./img/web_hi_res_512.png" alt="Logo" class="header-icon">
+      <span class="header-text">Ajuda e FAQ</span>
+    </div>
+    
+    <button class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="header-buttons">
+      <button onclick="window.location.href='index.html'">Início</button>
+    </div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <section class="faq-section">
+      <h1>Perguntas Frequentes</h1>
+      <div class="faq">
+        <details>
+          <summary>Como posso criar uma conta?</summary>
+          <p>Para criar uma conta, clique em "Registrar" no canto superior direito e siga as instruções.</p>
+        </details>
+        <details>
+          <summary>Esqueci minha senha, o que devo fazer?</summary>
+          <p>Clique em "Esqueci minha senha" na página de login e siga as instruções para recuperar sua conta.</p>
+        </details>
+        <details>
+          <summary>Como posso contatar o suporte?</summary>
+          <p>Você pode enviar um e-mail para <strong>guilhermedevsistemas@gmail.com</strong> ou utilizar o formulário de contato na seção "Contate-nos".</p>
+        </details>
+        <details>
+          <summary>Como atualizo minhas informações pessoais?</summary>
+          <p>Faça login em sua conta, acesse o painel de configurações e atualize as informações desejadas.</p>
+        </details>
+        <details>
+          <summary>O que fazer se encontrar um erro no site?</summary>
+          <p>Por favor, reporte o problema através do nosso formulário de contato ou envie um e-mail para <strong>suporte@exemplo.com</strong>.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: linear-gradient(135deg, rgba(0, 119, 255, 0.607), rgb(0, 0, 0)); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+          <img src="./img/web_hi_res_512.png" alt="Logo" style="height: 30px; margin-right: 10px;">
+          <span style="font-weight: 300; font-size: 1.2em;">Encontre Tecnologia</span>
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <div style="width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>SOBRE NÓS</strong>
+          <a href="sobre.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Sobre Nós</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>PRECISA DE AJUDA?</strong>
+          <a href="ajuda.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Ajuda</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>LEGAL</strong>
+          <a href="termos.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Termos de uso</a>
+          <a href="privacidade.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Política de privacidade</a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 20px;">
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <p style="font-size: 0.9em;">&copy; 2025 The Encontre Tecnologia Company. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
