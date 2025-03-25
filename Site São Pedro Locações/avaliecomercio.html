@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="42x42" href="./img/web_hi_res_512.png">
+  <title>encontre</title>
+  <!-- Importando a fonte Poppins do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+
+  <script src="./js/comunidade.js" defer></script>
+  <link rel="stylesheet" href="./css/avaliacao.css" />
+</head>
+<body>
+  <!-- Header fixo -->
+  <div class="header">
+    <div class="header-logo">
+      <img src="./img/web_hi_res_512.png" alt="Logo" class="header-icon" />
+      <span class="header-text">Encontre</span>
+    </div>
+    <!-- Botão de menu no canto direito -->
+    <button class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <!-- Botões de navegação (dropdown em mobile) -->
+    <div class="header-buttons">
+      <button onclick="window.location.href='index.html'">Início</button>
+      <button onclick="window.location.href='buscaravaliacao.html'">Avaliações feitas</button>
+      <button onclick="window.location.href='privacidade.html'">Privacidade</button>
+    </div>
+  </div>
+  <!-- Conteúdo principal -->
+  <div class="content">
+    <!-- Container de Busca -->
+    <div class="search-container">
+      <img src="./img/avaliar (1).png" alt="Logo Encontre" class="search-img">
+      <h2>Buscar Comércio</h2>
+      <input
+        type="text"
+        id="comercio-search"
+        placeholder="Digite o nome do lugar que deseja avaliar..."
+        oninput="searchBusiness()"
+        required
+      />
+    </div>
+    <!-- Container de Resultados da Busca -->
+    <div class="section" id="search-results">
+      <h2></h2>
+      <div id="business-list">
+        <!-- Os itens de comércio serão inseridos aqui -->
+      </div>
+    </div>
+    <!-- Container de Avaliação -->
+    <div class="container" id="evaluation-container">
+      <h1>Crie uma Avaliação:</h1>
+      <form id="rating-form">
+        <div class="form-group">
+          <label for="comercio-nome">Comércio:</label>
+          <input type="text" id="comercio-nome" readonly />
+        </div>
+        <div class="form-group">
+          <label for="nome">Seu Nome:</label>
+          <input type="text" id="nome" />
+        </div>
+        <div class="form-group">
+          <label for="nota">Nota (1 a 5):</label>
+          <select id="nota" required>
+            <option value="1">1 ⭐</option>
+            <option value="2">2 ⭐⭐</option>
+            <option value="3">3 ⭐⭐⭐</option>
+            <option value="4">4 ⭐⭐⭐⭐</option>
+            <option value="5">5 ⭐⭐⭐⭐⭐</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="valor_gasto">Valor Gasto (R$):</label>
+          <input type="number" id="valor_gasto" step="0.01" required />
+        </div>
+        <div class="form-group">
+          <label for="horario_pico">Horário de Pico:</label>
+          <input type="text" id="horario_pico" required />
+        </div>
+        <button type="submit">Enviar Avaliação</button>
+      </form>
+      <div class="message" id="message"></div>
+    </div>
+  </div>
+  <footer style="background: linear-gradient(135deg, rgba(0, 119, 255, 0.607), rgb(0, 0, 0)); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+          <img src="./img/web_hi_res_512.png" alt="Logo" style="height: 30px; margin-right: 10px;">
+          <span style="font-weight: 300; font-size: 1.2em;">Encontre Tecnologia</span>
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <div style="width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>SOBRE NÓS</strong>
+          <a href="sobre.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Sobre Nós</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>PRECISA DE AJUDA?</strong>
+          <a href="ajuda.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Ajuda</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>LEGAL</strong>
+          <a href="termos.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Termos de uso</a>
+          <a href="privacidade.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Política de privacidade</a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 20px;">
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <p style="font-size: 0.9em;">&copy; 2025 The Encontre Tecnologia Company. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

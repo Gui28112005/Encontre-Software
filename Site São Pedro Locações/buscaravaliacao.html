@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="42x42" href="./img/web_hi_res_512.png">
+  <title>encontre</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- Link para os ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+  <link rel="stylesheet" href="css/buscar.css">
+  <script src="js/buscar.js" defer></script>
+</head>
+<body>
+  <!-- Header fixo -->
+  <div class="header">
+    <div class="header-logo">
+      <img src="./img/web_hi_res_512.png" alt="Logo" class="header-icon" />
+      <span class="header-text">Encontre        </span>
+    </div>
+    <!-- Botão de menu no canto direito -->
+    <button class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <!-- Botões de navegação (dropdown em mobile) -->
+    <div class="header-buttons">
+      <button onclick="window.location.href='index.html'">Início</button>
+      <button onclick="window.location.href='avaliecomercio.html'">Avalie um comércio</button>
+      <button onclick="window.location.href='gasolina.html'">Gasolina inteligente</button>
+      <button onclick="window.location.href='privacidade.html'">Privacidade encontre</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <img src="./img/1lugar.png" class="logo" alt="Logo Encontre">
+    <h1>Encontre awards</h1>
+    
+    <!-- Seção de Ranking dos Top 3 Comercios -->
+    <div id="rankingContainer" class="mb-4"></div>
+    
+    <!-- Seção de Ranking dos Top 3 Avaliadores -->
+    <div id="rankingUsersContainer" class="mb-4"></div>
+    
+    <!-- Campo de busca -->
+<div class="mb-4">
+  <input type="text" id="searchInput" class="form-control" placeholder="🔍 Buscar comércio pelo nome..." onkeyup="filtrarComercios()">
+</div>
+    
+    <div class="table-responsive">
+      <table class="table table-hover" id="mergedTable">
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Comércio</th>
+            <th>Nota</th>
+            <th>Horário de pico</th>
+            <th>Valor Gasto</th>
+            <th>Cidade</th>
+            <th>Endereço</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <footer style="background: linear-gradient(135deg, rgba(0, 119, 255, 0.607), rgb(0, 0, 0)); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+          <img src="./img/web_hi_res_512.png" alt="Logo" style="height: 30px; margin-right: 10px;">
+          <span style="font-weight: 300; font-size: 1.2em;">Encontre Tecnologia</span>
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <div style="width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>SOBRE NÓS</strong>
+          <a href="sobre.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Sobre Nós</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>PRECISA DE AJUDA?</strong>
+          <a href="ajuda.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Ajuda</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>LEGAL</strong>
+          <a href="termos.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Termos de uso</a>
+          <a href="privacidade.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Política de privacidade</a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 20px;">
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <p style="font-size: 0.9em;">&copy; 2025 The Encontre Tecnologia Company. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  
+</body>
+</html>
