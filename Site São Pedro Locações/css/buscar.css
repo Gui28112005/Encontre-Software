@@ -1,0 +1,243 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  /* Header Fixo */
+  .header {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(0, 119, 255, 0.65), rgba(0, 0, 0, 0.85));
+    backdrop-filter: blur(6px);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  }
+  .header-logo {
+    display: flex;
+    align-items: center;
+  }
+  .header-icon {
+    width: 50px;
+    height: auto;
+    margin-right: 40px;
+  }
+  .header-text {
+    font-size: 1.2em;
+    font-weight: 200;
+    color: #ffffff;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  .header-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  .header-buttons button {
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 1em;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+  .header-buttons button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transform: translateY(-3px);
+  }
+  /* Responsividade do Header */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+    .header-buttons {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 10px 0;
+    }
+    .header-buttons.show {
+      display: flex;
+    }
+    .header-buttons button {
+      margin: 5px auto;
+      width: 90%;
+    }
+  }
+
+  /* Container Principal */
+  .container {
+    max-width: 90%;
+    width: 100%;
+    background: #fff;
+    padding: 40px;
+    margin: 100px auto 20px; /* Espaço superior para não ficar atrás do header */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+      margin: 100px 20px 20px;
+    }
+  }
+  h1,
+  h2 {
+    text-align: center;
+    color: #343a40;
+  }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+  }
+
+  .table-responsive {
+    width: 100%;
+  }
+  .table-responsive table {
+    margin: 0 auto;
+  }
+  .table th {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+  }
+  .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .position-image {
+    width: 40px;
+    height: 40px;
+  }
+  .ranking-card {
+    transition: transform 0.2s;
+  }
+  .ranking-card:hover {
+    transform: scale(1.05);
+  }
+  .ranking-icon {
+    width: 80px;
+    height: auto;
+  }
+  .logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 120px;
+  }
+
+  /* Footer */
+  footer {
+    background: linear-gradient(135deg, rgba(0, 119, 255, 0.607), rgb(0, 0, 0));
+    color: white;
+    padding: 30px 10px;
+    width: 100%;
+    margin-top: auto;
+  }
+  footer div {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  footer hr {
+    width: 100%;
+    border: 0.5px solid white;
+    margin: 20px 0;
+  }
+  footer a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 5px;
+  }
+  footer .social-icons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  footer .social-icons a {
+    font-size: 1.5em;
+  }
+      /* Estilos do Skeleton Loader */
+      .skeleton-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      width: 100%;
+      max-width: 300px;
+  }
+
+  .skeleton {
+      background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      border-radius: 5px;
+  }
+
+  .skeleton-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+  }
+
+  .skeleton-text {
+      width: 80%;
+      height: 15px;
+      margin-bottom: 10px;
+  }
+
+  @keyframes loading {
+      0% {
+          background-position: 200% 0;
+      }
+      100% {
+          background-position: -200% 0;
+      }
+  }
+
+  /* Container de carregamento */
+  .loading-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+  }
+

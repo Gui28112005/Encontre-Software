@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #eef2f3, #d6e4f0);
+    text-align: center;
+    color: #333;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 28px;
+    max-width: 400px;
+    border: 3px solid #007bff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 1.7rem;
+}
+
+p {
+    font-size: 1rem;
+    font-weight:600;
+    margin-bottom: 10px;
+}
+
+.timer {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #00c8ff;
+    margin: 10px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+    width: 45%;
+}
+
+#cancel-btn {
+    background-color: #ccc;
+    color: black;
+}
+
+#cancel-btn:hover {
+    background-color: #999;
+}
+
+#go-now-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+#go-now-btn:hover {
+    background-color: #0056b3;
+}

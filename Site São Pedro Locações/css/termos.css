@@ -1,0 +1,148 @@
+:root {
+  --primary-color: #0077ff;
+  --secondary-color: #000;
+  --white: #fff;
+  --light-gray: #f5f5f5;
+  --dark-gray: #333;
+}
+/* Reset e estilos básicos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--dark-gray);
+}
+
+/* Container do conteúdo */
+.container {
+  max-width: 800px;
+  width: 100%;
+  margin: 100px auto 20px auto;
+  padding: 20px 30px;
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+.container h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: var(--primary-color);
+  text-align: center;
+}
+.container h2 {
+  margin-top: 20px;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--light-gray);
+  padding-bottom: 5px;
+}
+.container p,
+.container li {
+  margin: 10px 0;
+  font-size: 1em;
+}
+.container ul {
+  list-style: inside disc;
+  padding-left: 20px;
+}
+/* Footer sempre no final */
+footer {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(0, 119, 255, 0.607), rgb(0, 0, 0));
+  color: white;
+  padding: 40px 20px;
+  margin-top: auto;
+}
+    /* Header */
+    header {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(0,119,255,0.85), rgba(0,0,0,0.7));
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+.header-logo img {
+  width: 50px;
+  margin-right: 15px;
+}
+.header-logo span {
+  font-size: 1.5em;
+  color: var(--white);
+  font-weight: 600;
+}
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--white);
+  font-size: 1.5em;
+  cursor: pointer;
+}
+nav {
+  display: flex;
+  gap: 20px;
+}
+nav a {
+  color: var(--white);
+  padding: 8px 15px;
+  border: 2px solid var(--white);
+  border-radius: 25px;
+  transition: background 0.3s, color 0.3s;
+  text-decoration: none; /* Remove o underline */
+}
+nav a:hover {
+  background: var(--white);
+  color: var(--secondary-color);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  /* Oculta o menu por padrão */
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 0;
+  }
+  /* Exibe o menu quando a classe "show" for adicionada */
+  nav.show {
+    display: flex;
+  }
+  nav a {
+    width: 95%;
+    margin: 5px auto;
+    text-align: center;
+  }
+}

@@ -1,0 +1,181 @@
+/* Reset e estilos básicos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh; /* Garante que a tela ocupe toda a altura */
+  overflow-x: hidden; /* Previne barras de rolagem desnecessárias */
+}
+
+/* Define o body como container flex para empurrar o footer para baixo */
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  text-align: center;
+}
+
+/* Header fixo */
+.header {
+  width: 100%;
+  max-width: 100vw;
+  background: linear-gradient(135deg, rgba(0, 119, 255, 0.65), rgba(0, 0, 0, 0.85));
+  backdrop-filter: blur(6px);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Logo e Nome */
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-icon {
+  width: 50px;
+  height: auto;
+  margin-right: 12px;
+}
+
+.header-text {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* Botões de Navegação */
+.header-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.header-buttons button {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1em;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.header-buttons button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translateY(-3px);
+}
+
+/* Botão de Menu (Hamburger) */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .header-buttons {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 0;
+    width: 100vw;
+  }
+
+  .header-buttons.show {
+    display: flex;
+  }
+
+  .header-buttons button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Estilos para o main e a FAQ */
+main {
+  flex: 1;
+  padding-top: 150px; /* Compensa o header fixo */
+}
+
+.faq-section {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-section h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.faq details {
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.faq details summary {
+  font-weight: bold;
+  list-style: none;
+  outline: none;
+  position: relative;
+  padding-right: 25px;
+}
+
+.faq details summary::after {
+  content: "▼";
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1em;
+}
+
+.faq details[open] summary::after {
+  content: "▲";
+}
+
+.faq details p {
+  margin-top: 10px;
+  padding-left: 10px;
+  color: #555;
+}
+
+/* Footer sempre no final */
+footer {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(0, 119, 255, 0.607), rgb(0, 0, 0));
+  color: white;
+  padding: 40px 20px;
+  margin-top: auto; /* Empurra o footer para o final */
+}

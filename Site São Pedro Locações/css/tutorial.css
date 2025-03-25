@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh; /* Garante que a tela ocupe toda a altura */
+  overflow-x: hidden; /* Previne barras de rolagem desnecessárias */
+}
+
+/* Define o body como container flex para empurrar o footer para baixo */
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  text-align: center;
+}
+
+/* Header fixo */
+.header {
+  width: 100%;
+  max-width: 100vw;
+  background: linear-gradient(135deg, rgba(0, 119, 255, 0.65), rgba(0, 0, 0, 0.85));
+  backdrop-filter: blur(6px);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Logo e Nome */
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-icon {
+  width: 50px;
+  height: auto;
+  margin-right: 12px;
+}
+
+.header-text {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* Botões de Navegação */
+.header-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.header-buttons button {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1em;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.header-buttons button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translateY(-3px);
+}
+
+/* Botão de Menu (Hamburger) */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .header-buttons {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 0;
+    width: 100vw;
+  }
+
+  .header-buttons.show {
+    display: flex;
+  }
+
+  .header-buttons button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+h1 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+  justify-items: center;
+  padding: 20px;
+  max-width: 100%;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 830px;
+  aspect-ratio: 830 / 430;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.image-container img:hover {
+  transform: scale(1.05);
+}
+
+/* Container dos botões */
+.button-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.button-container button {
+  background-color: #2196F3;
+  color: white;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 220px;
+  transition: background 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #1e88e5;
+}
+
+#back-to-form-button {
+  background-color: #4CAF50;
+}
+
+#back-to-form-button:hover {
+  background-color: #388E3C;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button-container button {
+    max-width: 90%;
+  }
+}
+
+/* Estilos do main para compensar o header fixo */
+main {
+  flex: 1;
+  padding-top: 150px; /* Garante que o conteúdo não fique atrás do header */
+}
+
+/* Footer sempre no final */
+footer {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(0, 119, 255, 0.607), rgb(0, 0, 0));
+  color: white;
+  padding: 40px 20px;
+  margin-top: auto; /* Empurra o footer para o final */
+}

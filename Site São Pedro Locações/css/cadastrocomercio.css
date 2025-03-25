@@ -1,0 +1,265 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Previne barras de rolagem desnecessárias */
+  min-height: 100vh; /* Garante que ocupa a altura total */
+}
+/* Header */
+header {
+  background-color: #000;
+  padding: 15px 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.header-text {
+  font-size: 1.2em;
+  font-weight: 200;
+  color: #ffffff;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Botões de Navegação */
+.header-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.header-buttons button {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1em;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.header-buttons button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translateY(-3px);
+}
+
+/* Botão de Menu (Hamburger) - inicialmente oculto */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+/* Responsividade - telas até 768px */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Esconde os botões de navegação e os posiciona como dropdown */
+  .header-buttons {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.645);
+    padding: 10px 0;
+  }
+
+  /* Quando a classe 'show' for adicionada, exibe o menu */
+  .header-buttons.show {
+    display: flex;
+  }
+
+  .header-buttons button {
+    margin: 5px auto;
+    width: 90%;
+  }
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.form-container, .preview-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #fff;
+  border: 1px solid #757575;
+  border-radius: 28px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.preview-container {
+  border-color: #4CAF50;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.image-button {
+  margin-top: 5px;
+  padding: 8px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.image-button:hover {
+  background-color: #1976D2;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.preview-card {
+  text-align: center;
+}
+
+.preview-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.preview-card h3 {
+  margin-top: 10px;
+}
+
+.preview-card p {
+  margin: 5px 0;
+}
+
+/* Estilo para os botões de link na pré-visualização */
+.link-button {
+  margin: 5px;
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.link-button:hover {
+  background-color: #45a049;
+}
+
+/* Estilos para a seção de pagamento */
+.payment-container {
+  margin-top: 20px;
+  text-align: center;
+}
+.payment-container img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: -40px;
+}
+.payment-container button {
+  padding: 12px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  margin-top: 50px;
+  border-radius: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.payment-container button:hover {
+  background-color: #d32f2f;
+}
+
+/* Estilos para o botão do WhatsApp */
+.whatsapp-container {
+  margin-top: 40px;
+  text-align: center;
+}
+.whatsapp-container button {
+  padding: 12px 20px;
+  background-color: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.whatsapp-container button:hover {
+  background-color: #1ebe57;
+}
+
+/* Mantém o footer no final */
+footer {
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 40px 20px;
+  margin-top: auto; /* Empurra o footer para baixo */
+}
+footer {
+  width: 100vw;
+}
+
+.footer-container {
+  max-width: 1200px; /* Mantém o conteúdo centralizado */
+  margin: 0 auto;
+}
+footer {
+  flex-grow: 1; /* Permite que ele expanda */
+}
+@media (min-width: 1024px) {
+.form-container {
+max-width: 900px; /* Aumenta a largura máxima */
+padding: 50px; /* Adiciona mais espaço interno */
+}
+}
