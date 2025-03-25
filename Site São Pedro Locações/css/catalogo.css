@@ -24,33 +24,6 @@ body {
     scrollbar-width: none;
 }
 
-/* Container que envolve a área de categorias */
-.categories-wrapper {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Botões de navegação */
-.scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: white;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.scroll-btn.left {
-  left: 10px;
-}
-
-.scroll-btn.right {
-  right: 10px;
-}
-
 /* Esconde a scrollbar por padrão nos navegadores Webkit */
 .categories::-webkit-scrollbar {
     height: 0px;
@@ -170,8 +143,7 @@ body {
     margin-bottom: 30px;
 }
 
-.comercio-filters select, 
-.comercio-filters button {
+.comercio-filters select, .comercio-filters button {
     padding: 12px 20px;
     font-size: 16px;
     border-radius: 8px;
@@ -195,21 +167,111 @@ body {
     background-color: #2980b9;
 }
 
-/* Grid responsivo para os cards */
+/* Lista de comércios */
 .comercio-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
     justify-content: center;
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 10px;
 }
 
 /* Cartões de comércio */
 .comercio-card {
+    background: rgb(0, 0, 0);
+    padding: 40px;
+    border-radius: 28px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comercio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.comercio-card h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #34495e;
+    margin: 15px 0;
+}
+
+.comercio-card p {
+    font-size: 15px;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+/* Imagens */
+.comercio-imagem {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Botões */
+.btn-comercio {
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.btn-comercio:hover {
+    background-color: #2980b9;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .comercio-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .search input {
+        width: 80%;
+    }
+
+    .categories {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .comercio-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+/* Grid responsivo para manter os cards alinhados */
+.comercio-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Card dos comércios com altura fixa */
+.comercio-card {
     background: white;
-    padding: 25px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -217,79 +279,57 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: 100%; /* Garante que todos os cards tenham a mesma altura */
 }
 
-.comercio-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Ajuste das imagens */
+/* Ajusta imagens para evitar tamanhos irregulares */
 .comercio-imagem {
-    width: 100%;
-    height: 200px;
+    width: 160%;
+    height: 260px; /* Tamanho fixo para evitar distorções */
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    border-radius: 8px;
 }
 
 /* Nome do comércio */
 .comercio-card h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #333;
     margin-bottom: 10px;
 }
 
-/* Descrição */
+/* Descrição do comércio */
 .comercio-card p {
     font-size: 1rem;
     color: #666;
     text-align: left;
-    line-height: 1.5;
-    flex-grow: 1;
+    line-height: 1.4;
+    flex-grow: 1; /* Faz com que a descrição ocupe espaço disponível */
 }
 
+/* Botões padronizados dentro dos cards */
 .comercio-links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas */
-    gap: 10px;
-    margin-top: 15px;
+    display: flex;
     justify-content: center;
+    gap: 0px;
+    margin-top: 15px;
 }
 
-/* Ajuste dos botões sociais */
 .btn-social {
-    padding: 10px 15px;
-    border-radius: 8px;
+    padding: 8px 15px;
+    border-radius: 28px;
     text-decoration: none;
     font-weight: bold;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease;
+    flex: 1; /* Todos os botões terão o mesmo tamanho */
     text-align: center;
-    min-width: 100px; /* Evita que os botões fiquem pequenos demais */
-    max-width: 150px; /* Impede que os botões fiquem muito largos */
-    flex-grow: 1; /* Faz com que os botões se ajustem dentro do espaço disponível */
 }
-.btn-social.disabled {
-    background-color: #ccc;  /* Cor cinza para indicar indisponível */
-    color: #666;
-    cursor: not-allowed;
-    pointer-events: none; /* Impede que o usuário clique */
-}
-
 
 .btn-social:hover {
-    opacity: 0.85;
-    transform: scale(1.05);
+    opacity: 0.8;
 }
 
-/* Cores dos botões */
+/* Cores específicas para cada tipo de link */
 .btn-social[href*="facebook"] {
-    background-color: #3b5998;
-    color: white;
-}
-
-.btn-social[href*="whatsapp"] {
     background-color: #3b5998;
     color: white;
 }
@@ -304,18 +344,11 @@ body {
     color: white;
 }
 
-.btn-social[href*="whatsapp"] {
-    background-color: #25D366;
-    color: white;
-}
-
-/* Responsividade */
 @media screen and (max-width: 768px) {
     .comercio-list {
         grid-template-columns: 1fr;
     }
 }
-
 /* Botões de navegação do carrossel (já existentes) */
 .carrossel {
     position: relative;
@@ -808,106 +841,112 @@ body {
     margin-top: 80px;
     height: auto;
 }
-/* Estilo do Skeleton Loader */
-.skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-    border-radius: 10px;
+
+.categories-container {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
-@keyframes loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+.nav-button {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #3498db;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
 }
 
-/* Skeleton para os cartões de comércio */
-.skeleton-card {
-    width: 100%;
-    max-width: 300px;
-    height: 220px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.nav-button.prev {
+  left: 10px;
 }
 
-.skeleton-image {
-    width: 100%;
-    height: 150px;
-    border-radius: 10px;
+.nav-button.next {
+  right: 10px;
 }
 
-.skeleton-text {
-    width: 80%;
-    height: 15px;
-    margin-top: 10px;
+.nav-button:hover {
+  color: #2980b9;
+}
+#filterTitle {
+  font-family: 'Arial', sans-serif; /* Fonte simples e elegante */
+  font-size: 28px; /* Tamanho adequado para um título que se destaca sem ser exagerado */
+  color: #333; /* Cor neutra para um visual clean */
+  text-align: center;
+  font-weight: 600; /* Peso médio para uma boa leitura */
+  text-transform: capitalize; /* Primeira letra maiúscula */
+  letter-spacing: 1px;
+  position: relative;
+  margin: 20px 0;
+  padding: 8px;
+  transition: all 0.3s ease; /* Transição suave para todos os efeitos */
 }
 
-.comercio-destaque-card {
-    background: #ffffff;
-    border: 5px solid #ffcc00;
-    padding: 12px;
-    border-radius: 27px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 390px;
-    margin: 10px auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    text-align: center;
-  }
-  
-  .destaque-icone {
-    font-size: 2rem;
-    margin-bottom: 5px;
-  }
-  
-  .destaque-titulo {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  .destaque-info {
-    margin-bottom: 10px;
-  }
-  
-  .destaque-nome {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .destaque-nota {
-    font-size: 1rem;
-    color: #ff9900;
-  }
-  
-  .destaque-botoes {
-    display: flex;
-    gap: 8px;
-  }
-  
-  .destaque-maps-btn,
-  .destaque-ver-mais-btn {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .destaque-maps-btn:hover,
-  .destaque-ver-mais-btn:hover {
-    background: #0056b3;
-  }
-  
-  
+#filterTitle::after {
+  content: ''; /* Linha simples embaixo */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: #4CAF50; /* Cor sutil que combina com o título */
+  transition: width 0.3s ease; /* Efeito suave ao expandir a linha */
+}
+
+#filterTitle:hover {
+  color: #4CAF50; /* Muda a cor do texto quando hover */
+}
+
+#filterTitle:hover::after {
+  width: 100%; /* A linha cresce ao passar o mouse */
+}
+
+.favorite-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #ff6f61;
+}
+
+.favorite-btn i {
+  font-size: 20px;
+}
+
+.carrossel {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.carrossel img {
+  display: none;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.carrossel img.active {
+  display: block;
+}
+
+button.prev, button.next {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  cursor: pointer;
+}
+
+button.prev {
+  left: 0;
+}
+
+button.next {
+  right: 0;
+}
