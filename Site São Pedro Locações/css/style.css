@@ -760,7 +760,7 @@ nav a:hover {
   text-align: center;
   position: center;
   margin: auto;
-  margin: 100px auto 0 auto; /* <<< Aqui adicionamos margin-top de 80px */
+  margin: 180px auto 0 auto; /* <<< Aqui adicionamos margin-top de 80px */
 }
 .close-btn {
   position: absolute;
