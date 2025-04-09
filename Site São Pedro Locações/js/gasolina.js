@@ -5,9 +5,7 @@ function toggleMenu() {
 
 async function loadFuelPrices() {
   try {
-    const response = await fetch(
-      "https://encontreoficialback.azurewebsites.net/fuel-prices"
-    );
+    const response = await fetch("https://encontreoficialback.azurewebsites.net/fuel-prices");
     const data = await response.json();
     const tableBody = document
       .getElementById("fuel-list")
@@ -48,23 +46,22 @@ document
     const estado = document.getElementById("estado").value;
 
     try {
-      const response = await fetch(
-        "https://encontreoficialback.azurewebsites.net/add-fuel-price",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            nome,
-            endereco,
-            tipo_combustivel,
-            preco,
-            cidade,
-            estado,
-          }),
-        }
-      );
+      const response = await fetch("https://encontreoficialback.azurewebsites.net/add-fuel-price", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome,
+          endereco,
+          tipo_combustivel,
+          preco,
+          cidade,
+          estado,
+        }),
+      });
 
       if (response.ok) {
+        const result = await response.json(); // Supondo que o backend retorna o ID do posto cadastrado
+        saveUserPost(result.id); // Salva o ID no localStorage
         alert("Posto cadastrado com sucesso!");
         loadFuelPrices();
       } else {
@@ -86,14 +83,11 @@ async function editFuelPrice(id, currentPrice) {
   const normalizedPrice = newPrice.replace(",", ".");
 
   try {
-    const response = await fetch(
-      `https://encontreoficialback.azurewebsites.net/fuel-price/${id}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ preco: normalizedPrice }),
-      }
-    );
+    const response = await fetch(`https://encontreoficialback.azurewebsites.net/fuel-price/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ preco: normalizedPrice }),
+    });
 
     if (response.ok) {
       alert("Preço atualizado!");
@@ -107,21 +101,19 @@ async function editFuelPrice(id, currentPrice) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const header = document.querySelector(".header");
+  const header = document.querySelector("header");
 
-  // Função que é chamada quando a rolagem ocorre
   function toggleHeaderOnScroll() {
+    if (!header) return;
+
     if (window.scrollY <= 0) {
-      header.classList.remove("hide-header"); // Mostra o header quando estiver no topo
+      header.classList.remove("hide-header");
     } else {
-      header.classList.add("hide-header"); // Esconde o header quando não estiver no topo
+      header.classList.add("hide-header");
     }
   }
 
-  // Chama a função na rolagem da página
   window.addEventListener("scroll", toggleHeaderOnScroll);
-
-  // Chama a função para verificar a posição ao carregar a página
   toggleHeaderOnScroll();
 });
 
@@ -132,7 +124,7 @@ function toggleMenu() {
 
 async function loadFuelPrices(cidade = "", estado = "") {
   try {
-    let url = "https://encontreoficialback.azurewebsites.net/fuel-prices";
+    let url = "https://encontreoficialback.azurewebsites.net/fuel-prices"; //http://localhost:8080
 
     // Construir query parameters corretamente
     const params = new URLSearchParams();
@@ -161,18 +153,21 @@ async function loadFuelPrices(cidade = "", estado = "") {
       const row = tableBody.insertRow();
 
       row.innerHTML = `
-          <td>${post.nome}</td>
-          <td>${post.endereco}</td>
-          <td>${post.tipo_combustivel}</td>
-          <td>${post.cidade}</td>
-          <td>${post.estado}</td>
-          <td class="price">R$ ${parseFloat(post.preco).toFixed(2)}</td>
-          <td class="actions">
-            <button class="edit-btn" onclick="editFuelPrice(${post.id}, '${
+  <td>${post.nome}</td>
+  <td>${post.endereco}</td>
+  <td>${post.tipo_combustivel}</td>
+  <td>${post.cidade}</td>
+  <td>${post.estado}</td>
+  <td class="price">R$ ${parseFloat(post.preco).toFixed(2)}</td>
+  <td class="actions">
+    <button class="edit-btn" onclick="editFuelPrice(${post.id}, '${
         post.preco
-      }')">Editar Preço</button>
-          </td>
-        `;
+      }')">Editar</button>
+    <button class="delete-btn" onclick="deleteFuelStation(${
+      post.id
+    })" style="background-color: red; color: white;">Excluir</button>
+  </td>
+`;
     });
   } catch (error) {
     console.error("Erro ao carregar os dados:", error);
@@ -197,4 +192,73 @@ function searchFuelPrices() {
     const text = row.innerText.toLowerCase();
     row.style.display = text.includes(searchValue) ? "" : "none";
   });
+}
+
+async function deleteFuelStation(id) {
+  if (!confirm("Tem certeza que deseja excluir este posto?")) return;
+
+  try {
+    const response = await fetch(`https://encontreoficialback.azurewebsites.net/fuel-station/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      alert("Posto excluído com sucesso!");
+      loadFuelPrices();
+    } else {
+      alert("Erro ao excluir o posto.");
+    }
+  } catch (error) {
+    console.error("Erro ao excluir o posto:", error);
+  }
+}
+
+async function saveUserPost() {
+  const nome = document.getElementById("nome").value;
+  const endereco = document.getElementById("endereco").value;
+  const cidade = document.getElementById("cidade").value;
+  const estado = document.getElementById("estado").value;
+  const tipo_combustivel = document.getElementById("tipo_combustivel").value;
+  const preco = parseFloat(document.getElementById("preco").value);
+
+  if (
+    !nome ||
+    !endereco ||
+    !cidade ||
+    !estado ||
+    !tipo_combustivel ||
+    isNaN(preco)
+  ) {
+    alert("Por favor, preencha todos os campos corretamente.");
+    return;
+  }
+
+  try {
+    const response = await fetch("https://encontreoficialback.azurewebsites.net/add-fuel-price", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome,
+        endereco,
+        cidade,
+        estado,
+        tipo_combustivel,
+        preco,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("Posto cadastrado com sucesso!");
+      document.getElementById("add-fuel-price-form").reset();
+    } else {
+      alert("Erro ao cadastrar: " + data.message);
+    }
+  } catch (err) {
+    console.error("Erro na requisição:", err);
+    alert("Erro ao conectar com o servidor.");
+  }
 }
