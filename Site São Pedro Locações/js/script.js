@@ -1,132 +1,53 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const comercioList = document.getElementById("comercio-list");
   const searchInput = document.getElementById("searchInput");
-  const urlParams = new URLSearchParams(window.location.search);
-  const comercioId = urlParams.get("id");
+  const categoriaTextoEl = document.getElementById("categoriaSelecionadaTexto");
+  const loading = document.getElementById("loading");
+  const comercioSection = document.getElementById("comercio-list");
 
-  // Agora você pode usar o comercioId para buscar e exibir as avaliações
-  console.log("ID do comércio:", comercioId);
+  window.allComercios = [];
 
-  // Armazena todos os comércios carregados
-  let allComercios = [];
-
-  async function carregarDestaque() {
-    try {
-      const response = await fetch(
-        "https://encontreoficialback.azurewebsites.net/all-businesses-details"
-      );
-      const data = await response.json();
-
-      // Ordena os comércios: maior nota primeiro; em caso de empate, menor gasto primeiro
-      data.sort((a, b) => {
-        const notaA = parseFloat(a.nota_media) || 0;
-        const notaB = parseFloat(b.nota_media) || 0;
-        if (notaB !== notaA) return notaB - notaA;
-        const gastoA =
-          a.menor_valor_gasto === null
-            ? Infinity
-            : parseFloat(a.menor_valor_gasto);
-        const gastoB =
-          b.menor_valor_gasto === null
-            ? Infinity
-            : parseFloat(b.menor_valor_gasto);
-        return gastoA - gastoB;
-      });
-
-      const destaque = data[0];
-
-      // Criação do container destaque
-      let destaqueHTML = `
-        <div class="comercio-destaque-card">
-          <div class="destaque-icone">🏆</div>
-          <h3 class="destaque-titulo">Comércio Destaque</h3>
-          <div class="destaque-info">
-            <p class="destaque-nome">${
-              destaque.comercio_nome || destaque.nome
-            }</p>
-            <p class="destaque-nota">⭐ ${
-              destaque.nota_media
-                ? parseFloat(destaque.nota_media).toFixed(1)
-                : "N/A"
-            }</p>
-          </div>
-          <div class="destaque-botoes">
-            <button class="destaque-maps-btn" onclick="window.open('https://www.google.com/maps/search/${encodeURIComponent(
-              destaque.endereco || ""
-            )}', '_blank')">
-              abrir no  Maps
-          </div>
-           <h3 class="destaque-titulo">veja os comercios avaliados na tela avaliações ⭐</h3>
-        </div>
-      `;
-
-      const destaqueContainer = document.getElementById("comercio-destaque");
-      if (destaqueContainer) {
-        destaqueContainer.innerHTML = destaqueHTML;
-      }
-    } catch (error) {
-      console.error("Erro ao carregar comércio destaque:", error);
-    }
-  }
-
-  function irParaOutraTela(comercioId) {
-    window.location.href = `/buscaravaliacao.html?id=${comercioId}`;
-  }
-
-  // Chamar a função ao iniciar a página
-  carregarDestaque();
-
-  // Função que carrega os comércios da API (com filtro opcional por categoria)
   async function carregarComercios(categoria = "todos") {
     try {
-      // Exibe skeleton loader enquanto carrega
-      comercioList.innerHTML = `
-              <div class="skeleton-card">
-                  <div class="skeleton skeleton-image"></div>
-                  <div class="skeleton skeleton-text"></div>
-                  <div class="skeleton skeleton-text" style="width: 60%;"></div>
-              </div>
-              <div class="skeleton-card">
-                  <div class="skeleton skeleton-image"></div>
-                  <div class="skeleton skeleton-text"></div>
-                  <div class="skeleton skeleton-text" style="width: 60%;"></div>
-              </div>
-              <div class="skeleton-card">
-                  <div class="skeleton skeleton-image"></div>
-                  <div class="skeleton skeleton-text"></div>
-                  <div class="skeleton skeleton-text" style="width: 60%;"></div>
-              </div>
-        `;
+      if (loading) loading.style.display = "flex";
 
       let url = "https://encontreoficialback.azurewebsites.net/comercios";
       if (categoria !== "todos") {
-        url += `?categoria=${categoria}`;
+        url += `?categoria=${encodeURIComponent(categoria)}`;
       }
 
       const response = await fetch(url);
       const comercios = await response.json();
 
-      // Armazena os dados para a busca global
-      allComercios = comercios;
+      window.allComercios = comercios;
+
       renderComercios(comercios);
     } catch (error) {
       console.error("Erro ao carregar comércios:", error);
-      comercioList.innerHTML = "<p>Erro ao carregar comércios.</p>";
+      if (comercioList) {
+        comercioList.innerHTML = "<p>Erro ao carregar comércios.</p>";
+      }
+    } finally {
+      if (loading) loading.style.display = "none";
     }
   }
 
-  // Função que renderiza os comércios na tela (com limite de 50)
   function renderComercios(comercios) {
+    if (!comercioList) return;
+
     comercioList.innerHTML = "";
+
     if (comercios.length === 0) {
-      comercioList.innerHTML = "<p>Nenhum comércio encontrado.</p>";
+      comercioList.innerHTML = `
+        <div class="no-results">
+          <div class="icon">⚠️</div>
+          <p>Nenhum comércio encontrado.</p>
+        </div>
+      `;
       return;
     }
 
-    // Limita o número de comércios exibidos a 50
-    const comerciosLimitados = comercios.slice(0, 20);
-
-    comerciosLimitados.forEach((comercio, index) => {
+    comercios.forEach((comercio, index) => {
       const comercioItem = document.createElement("div");
       comercioItem.classList.add("comercio-card");
 
@@ -137,67 +58,77 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       let imagensHtml = imagens
         .map(
-          (img, i) =>
-            `<img src="${img}" class="comercio-imagem ${
-              i === 0 ? "active" : ""
-            }" data-index="${i}" />`
+          (img, i) => `
+            <img src="${img}" class="comercio-imagem ${
+            i === 0 ? "active" : ""
+          }" data-index="${i}" />
+          `
         )
         .join("");
 
       let controlsHtml =
         imagens.length > 1
-          ? `<button class="prev">&#10094;</button>
-           <button class="next">&#10095;</button>`
+          ? `
+              <button class="prev">&#10094;</button>
+              <button class="next">&#10095;</button>
+            `
           : "";
 
       let socialLinksHtml = `
-      <div class="comercio-links">
-        <a href="${
-          comercio.link_facebook || "#"
-        }" target="_blank" class="btn-social ${
-        comercio.link_facebook ? "" : "disabled"
-      }">
-          Facebook ${comercio.link_facebook ? "" : "(Indisponível)"}
-        </a>
-        <a href="${
-          comercio.link_instagram || "#"
-        }" target="_blank" class="btn-social ${
-        comercio.link_instagram ? "" : "disabled"
-      }">
-          Instagram ${comercio.link_instagram ? "" : "(Indisponível)"}
-        </a>
-        <a href="${
-          comercio.link_site_pessoal || "#"
-        }" target="_blank" class="btn-social ${
-        comercio.link_site_pessoal ? "" : "disabled"
-      }">
-          Site ${comercio.link_site_pessoal ? "" : "(Indisponível)"}
-        </a>
-        <a href="${
-          comercio.telefone
-            ? `https://wa.me/${comercio.telefone.replace(/\D/g, "")}`
-            : "#"
-        }" target="_blank" class="btn-social ${
-        comercio.telefone ? "" : "disabled"
-      }">
-          WhatsApp ${comercio.telefone ? "" : "(Indisponível)"}
-        </a>
-      </div>
-    `;
+        <div class="comercio-links">
+          ${
+            comercio.link_facebook
+              ? `<a href="${comercio.link_facebook}" target="_blank" class="btn-social">Facebook</a>`
+              : ""
+          }
+          ${
+            comercio.link_instagram
+              ? `<a href="${comercio.link_instagram}" target="_blank" class="btn-social">Instagram</a>`
+              : ""
+          }
+          ${
+            comercio.link_site_pessoal
+              ? `<a href="${comercio.link_site_pessoal}" target="_blank" class="btn-social">Site</a>`
+              : ""
+          }
+          ${
+            comercio.endereco
+              ? `<a href="${comercio.endereco}" target="_blank" class="btn-social">Maps</a>`
+              : ""
+          }
+        </div>
+      `;
 
       comercioItem.innerHTML = `
-      <div class="carrossel" id="carrossel-${index}">
-        ${imagensHtml}
-        ${controlsHtml}
-      </div>
-      <h3>${comercio.nome}</h3>
-      <p><strong>Categoria:</strong> ${comercio.categoria}</p>
-      <p><strong>Endereço:</strong> ${comercio.endereco}</p>
-      <p><strong>Horário:</strong> ${
-        comercio.horario_funcionamento || "Não informado"
-      }</p>
-      ${socialLinksHtml}
-    `;
+        <div class="comercio-card-content">
+          <h3>${comercio.nome}</h3>
+          <div class="carrossel" id="carrossel-${index}">
+            ${imagensHtml}
+            ${controlsHtml}
+          </div>
+          <div id="detalhes-${
+            comercio.id
+          }" class="detalhes" style="display:none">
+            <p><strong>Categoria:</strong> ${comercio.categoria}</p>
+            <p><strong>Endereço:</strong> ${comercio.endereco}</p>
+            <p><strong>Horário:</strong> ${
+              comercio.horario_funcionamento || "Não informado"
+            }</p>
+            <p><strong>Descrição:</strong> ${
+              comercio.descricao || "Sem descrição"
+            }</p>
+            <p><strong>Contato:</strong> ${
+              comercio.contato || "Não disponível"
+            }</p>
+            ${socialLinksHtml}
+                  <button onclick="compartilharComercio(${
+                    comercio.id
+                  })" class="btn-compartilhar">
+           Compartilhar comércio 🔗
+           </button>
+          </div>
+        </div>
+      `;
 
       comercioList.appendChild(comercioItem);
 
@@ -206,21 +137,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         const prevButton = carrossel.querySelector(".prev");
         const nextButton = carrossel.querySelector(".next");
 
-        prevButton.addEventListener("click", () => mudarImagem(carrossel, -1));
-        nextButton.addEventListener("click", () => mudarImagem(carrossel, 1));
+        prevButton?.addEventListener("click", () => mudarImagem(carrossel, -1));
+        nextButton?.addEventListener("click", () => mudarImagem(carrossel, 1));
 
         iniciarCarrossel(carrossel);
       }
     });
   }
 
-  // Função para alterar a imagem do carrossel
   function mudarImagem(carrossel, direction) {
     const imagens = carrossel.querySelectorAll(".comercio-imagem");
     let activeIndex = Array.from(imagens).findIndex((img) =>
       img.classList.contains("active")
     );
     imagens[activeIndex].classList.remove("active");
+
     let newIndex = (activeIndex + direction + imagens.length) % imagens.length;
     imagens[newIndex].classList.add("active");
   }
@@ -229,7 +160,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     setInterval(() => mudarImagem(carrossel, 1), 3000);
   }
 
-  // Função de busca que filtra por nome, categoria, endereço e descrição
   window.performSearch = function () {
     const query = searchInput.value.toLowerCase().trim();
     if (!query) {
@@ -248,38 +178,67 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderComercios(filtered);
   };
 
-  // Evento para clicar nas categorias e filtrar os comércios
   document.querySelectorAll(".category").forEach((category) => {
     category.addEventListener("click", () => {
       const categoriaSelecionada = category.getAttribute("data-category");
       carregarComercios(categoriaSelecionada);
+
+      if (comercioSection) {
+        comercioSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+
+      const categoriaTexto = category.querySelector("h3")?.innerText;
+      if (categoriaTextoEl) {
+        categoriaTextoEl.innerText = `Comércios de ${categoriaTexto}`;
+      }
     });
   });
 
-  // Carrega o destaque e os comércios ao iniciar a página
-  carregarDestaque();
   carregarComercios();
 });
 
-// Outras funções auxiliares
-function toggleMenu() {
-  document.getElementById("nav").classList.toggle("show");
-}
-
-let currentIndex = 0;
-function moveSlide(direction) {
-  const slides = document.querySelectorAll(".carousel-slide");
-  const totalSlides = slides.length;
-  currentIndex += direction;
-  if (currentIndex >= totalSlides) {
-    currentIndex = 0;
-  } else if (currentIndex < 0) {
-    currentIndex = totalSlides - 1;
+// Funções globais
+window.toggleFavorite = function (comercioId) {
+  const icon = document.getElementById(`favorite-icon-${comercioId}`);
+  if (icon.classList.contains("fas")) {
+    icon.classList.remove("fas");
+    icon.classList.add("far");
+  } else {
+    icon.classList.remove("far");
+    icon.classList.add("fas");
   }
-  document.querySelector(".carousel-container").style.transform = `translateX(${
-    -currentIndex * 100
-  }%)`;
-}
+};
+
+window.toggleMenu = function () {
+  document.getElementById("nav").classList.toggle("show");
+};
+
+window.scrollCategorias = function (direction) {
+  const container = document.querySelector(".categories");
+  const scrollAmount = 300;
+  container.scrollBy({
+    left: direction * scrollAmount,
+    behavior: "smooth",
+  });
+};
+
+window.verMais = function (comercioId) {
+  const detalhes = document.getElementById(`detalhes-${comercioId}`);
+  const btn = document.querySelector(
+    `button[onclick="verMais(${comercioId})"]`
+  );
+
+  if (detalhes.style.display === "none" || detalhes.style.display === "") {
+    detalhes.style.display = "block";
+    if (btn) btn.textContent = "Ver menos";
+  } else {
+    detalhes.style.display = "none";
+    if (btn) btn.textContent = "Ver mais";
+  }
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   // Verifica se o cookie já foi aceito
@@ -344,20 +303,26 @@ function closePopup() {
   const popup = document.getElementById("privacyPopup");
   popup.style.display = "none"; // Ocultar o popup
 }
+window.compartilharComercio = function (comercioId) {
+  const comercio = window.allComercios.find((c) => c.id === comercioId);
+  if (!comercio) return;
 
-function scrollCategories(direction) {
-  const categories = document.querySelector(".categories");
-  const scrollAmount = 300; // ajuste conforme necessário
+  const texto = `${comercio.nome}\n${
+    comercio.descricao || ""
+  }\nVeja mais no Encontre!`;
+  const url = `${window.location.origin}/comercio.html?id=${comercioId}`;
 
-  if (direction === "left") {
-    categories.scrollBy({
-      left: -scrollAmount,
-      behavior: "smooth",
-    });
-  } else if (direction === "right") {
-    categories.scrollBy({
-      left: scrollAmount,
-      behavior: "smooth",
-    });
+  if (navigator.share) {
+    navigator
+      .share({
+        title: comercio.nome,
+        text: texto,
+        url: url,
+      })
+      .then(() => console.log("Compartilhado com sucesso"))
+      .catch((err) => console.error("Erro ao compartilhar:", err));
+  } else {
+    navigator.clipboard.writeText(url);
+    alert("Link copiado para a área de transferência!");
   }
-}
+};
