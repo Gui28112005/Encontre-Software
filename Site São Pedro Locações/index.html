@@ -14,148 +14,106 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
-      <!-- Header -->
-  <header>
-    <div class="header-logo">
-      <img src="./img/web_hi_res_512.png" alt="Logo">
-    </div>
-    <button class="menu-toggle" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i>
-    </button>
-    <nav id="nav">
-      <a href="gasolina.html">Gas Inteligente</a>
-      <a href="buscaravaliacao.html">Avaliações</a>
-      <a href="sobre.html">Sobre-nos</a>
-      <a href="encontrenegocio1.html">Encontre meu Negócio</a>
-      <a href="privacidade.html">Central de Privacidade</a>
-    </nav>
-  </header>
+ <!-- Header -->
+    <header>
+        <div class="header-logo">
+          <img id="logo" src="./img/web_hi_res_512.png" alt="Logo">
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav id="nav">
+          <a href="gasolina.html">Gas Inteligente</a>
+          <a href="avaliecomercio.html">Avalie lugares</a>
+          <a href="sobre.html">Sobre-nos</a>
+          <a href="encontrenegocio1.html">Encontre meu Negócio</a>
+          <a href="privacidade.html">Central de Privacidade</a>
+        </nav>
+    </header>
+         <!-- Seção de Busca -->
+         <section class="search">
 
-  <!-- Seção de Busca -->
-  <section class="search">
-    <img src="./img/logo233.png" alt="Pesquisa" class="search-image">
-    <h1></h1>    
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Digite ou fale para pesquisar..." onkeyup="performSearch()">
-      <button onclick="performSearch()" class="search-btn">
-        <i class="fas fa-search"></i>
+          
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Digite ou fale para pesquisar..." onkeyup="performSearch()">
+            <button onclick="performSearch()" class="search-btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>    
+
+
+    <section class="categories-container">
+      <section class="categories" id="categories">
+      <button class="nav-button prev" onclick="scrollCategorias(-1)">
+        &lt;
       </button>
-      <button onclick="startVoiceSearch()" class="voice-btn">
-        <i class="fas fa-microphone"></i>
+      <section class="categories">
+        <div class="category" data-category="restaurante" onclick="filtrarPorCategoria(this)">
+          <img src="./img/unnamed.png" alt="Ícone de Restaurante">
+          <h3>Restaurantes</h3>
+          <p>Explore os melhores lugares para comer na cidade.</p>
+        </div>
+        <div class="category" data-category="ponto turistico" onclick="filtrarPorCategoria(this)">
+          <img src="./img/th.jpeg" alt="Ícone de Lazer">
+          <h3>Lazer</h3>
+          <p>Encontre opções para se divertir com a família e amigos.</p>
+        </div>
+        <div class="category" data-category="comercio" onclick="filtrarPorCategoria(this)">
+          <img src="./img/icons8-loja-96.png" alt="Ícone de Comércio">
+          <h3>Comércio</h3>
+          <p>Descubra lojas incríveis para suas compras.</p>
+        </div>
+        <div class="category" data-category="pousadas e hoteis" onclick="filtrarPorCategoria(this)">
+          <img src="./img/hotel-icon-vector-illustration_193397-27.avif" alt="Ícone de Hotéis">
+          <h3>Hotéis</h3>
+          <p>Encontre acomodações confortáveis para sua estadia.</p>
+        </div>
+        <div class="category" data-category="barbearia" onclick="filtrarPorCategoria(this)">
+          <img src="./img/1615481.png" alt="Ícone de Beleza">
+          <h3>Beleza</h3>
+          <p>Os melhores salões e clínicas de estética da cidade.</p>
+        </div>
+        <div class="category" data-category="academia" onclick="filtrarPorCategoria(this)">
+          <img src="./img/6040568.png" alt="Ícone de Fitness">
+          <h3>Fitness</h3>
+          <p>Academias e espaços para manter a forma.</p>
+        </div>
+      </section>
+      <button class="nav-button next" onclick="scrollCategorias(1)">
+        &gt;
       </button>
-    </div>
-  </section>
-  
-<!-- Seção de Categorias -->
-<section class="categories-wrapper">
-  <button class="scroll-btn left" onclick="scrollCategories('left')">
-    <i class="fas fa-chevron-left"></i>
-  </button>
-  
-  <div class="categories">
-    <div class="category" data-category="restaurante" onclick="filtrarPorCategoria(this)">
-      <img src="./img/unnamed.png" alt="Ícone de Restaurante">
-      <h3>Restaurantes</h3>
-      <p>Explore os melhores lugares para comer na cidade.</p>
-    </div>
-    <div class="category" data-category="ponto turistico" onclick="filtrarPorCategoria(this)">
-      <img src="./img/th.jpeg" alt="Ícone de Lazer">
-      <h3>Lazer</h3>
-      <p>Encontre opções para se divertir com a família e amigos.</p>
-    </div>
-    <div class="category" data-category="comercio" onclick="filtrarPorCategoria(this)">
-      <img src="./img/icons8-loja-96.png" alt="Ícone de Comércio">
-      <h3>Comércio</h3>
-      <p>Descubra lojas incríveis para suas compras.</p>
-    </div>
-    <div class="category" data-category="pousadas e hoteis" onclick="filtrarPorCategoria(this)">
-      <img src="./img/hotel-icon-vector-illustration_193397-27.avif" alt="Ícone de Hotéis">
-      <h3>Hotéis</h3>
-      <p>Encontre acomodações confortáveis para sua estadia.</p>
-    </div>
-    <div class="category" data-category="barbearia" onclick="filtrarPorCategoria(this)">
-      <img src="./img/1615481.png" alt="Ícone de Beleza">
-      <h3>Beleza</h3>
-      <p>Os melhores salões e clínicas de estética da cidade.</p>
-    </div>
-    <div class="category" data-category="academia" onclick="filtrarPorCategoria(this)">
-      <img src="./img/6040568.png" alt="Ícone de Fitness">
-      <h3>Fitness</h3>
-      <p>Academias e espaços para manter a forma.</p>
-    </div>
-  </div>
-  
-  <button class="scroll-btn right" onclick="scrollCategories('right')">
-    <i class="fas fa-chevron-right"></i>
-  </button>
-</section>
-
-  
-  <!-- Popup de Privacidade / Cookies -->
-  <div id="privacyPopup" class="popup-overlay">
-    <div class="popup-content">
-      <span class="close-btn" onclick="closePopup()">&times;</span>
-      <img src="./img/web_hi_res_512.png" alt="Logo" class="header-icons">
-      <h2>Sobre cookies</h2>
-      <p>
-        Ao clicar em "Permitir todos", você consente que o Encontre Tecnologia e seus parceiros utilizem cookies (ou tecnologias semelhantes) para personalizar sua experiência, fornecer anúncios personalizados e nos ajudar a entender o uso do site. Os cookies necessários estarão sempre ativos, pois são essenciais para o funcionamento do site. Veja nossa política de cookies para saber mais.
-      </p>
-      <label>
-        <input type="checkbox" id="privacyCheckbox"> Eu aceito a política de privacidade.
-      </label>
-      <div>
-        <button onclick="acceptPrivacy()">Estou ciente do uso de Cookies</button>
-        <button class="cookie-btn" onclick="window.location.href='privacidade.html'">
-          Quero saber mais sobre cookies
-        </button>         
-      </div>
-    </div>
-  </div>
-  
-  <!-- Seção de Comércios -->
-  <section id="comercio" class="comercio-section">
-    <h2>Feed de Lugares</h2>
-    
-    <!-- Container para exibir o comércio destaque -->
-    <div id="comercio-destaque"></div>
-    
-    <!-- Lista dos demais comércios -->
-    <div class="comercio-list" id="comercio-list">
-      <p class="loading">Carregando comércios...</p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div style="width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
-      <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center;">
-          <img src="./img/web_hi_res_512.png" alt="Logo" style="height: 30px; margin-right: 10px;">
-          <span style="font-weight: 300; font-size: 1.2em;">Encontre Tecnologia</span>
+    </section>
+    <!-- Popup de Privacidade / Cookies -->
+    <div id="privacyPopup" class="popup-overlay">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <img src="./img/web_hi_res_512.png" alt="Logo" class="header-icons">
+        <h2>Sobre cookies</h2>
+        <p>
+          Ao clicar em "Permitir todos", você consente que o Encontre Tecnologia e seus parceiros utilizem cookies (ou tecnologias semelhantes) para personalizar sua experiência, fornecer anúncios personalizados e nos ajudar a entender o uso do site. Os cookies necessários estarão sempre ativos, pois são essenciais para o funcionamento do site. Veja nossa política de cookies para saber mais.
+        </p>
+        <label>
+          <input type="checkbox" id="privacyCheckbox"> Eu aceito a política de privacidade.
+        </label>
+        <div>
+          <button onclick="acceptPrivacy()">Estou ciente do uso de Cookies</button>
+          <button class="cookie-btn" onclick="window.open('https://www.seusite.com/politica-de-cookies', '_blank')">
+            Quero saber mais sobre cookies
+          </button>
         </div>
       </div>
-      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
-      <div style="width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;">
-        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
-          <strong>SOBRE NÓS</strong>
-          <a href="sobre.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Nossa empresa</a>
-        </div>
-        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
-          <strong>PRECISA DE AJUDA?</strong>
-          <a href="ajuda.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Perguntas frequêntes</a>
-        </div>
-        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
-          <strong>LEGAL</strong>
-          <a href="termos.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Termos de uso</a>
-          <a href="privacidade.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Política de privacidade</a>
-        </div>
-      </div>
-      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
-      <p style="font-size: 0.9em;">&copy; 2025 The Encontre Tecnologia Company. Todos os direitos reservados.</p>
     </div>
-  </footer>
-
-  <script src="js/catalogo.js" defer></script>
+    </section>
+    <div class="container">
+      <div id="comercio-list" class="comercio-list">
+        <div id="loading" class="loading-spinner-container" style="display: none;">
+          <div class="spinner"></div>
+          <p>Carregando comércios...</p>
+        </div>        
+    </section>
+  <script src="js/script.js"></script>
+</body>
+</html>
 
 </body>
 </html>
