@@ -82,7 +82,7 @@ document
     formData.forEach((value, key) => {
       formObject[key] = value;
     });
-    fetch("https://encontreoficialback.azurewebsites.net/comercios", {
+    fetch("http://localhost:8080/comercios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
