@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Detalhes do Comércio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(120deg, #f6f9fc, #e3f2fd);
+  color: #495057;
+}
+
+/* Para o container principal ocupar o espaço disponível */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 15px 30px; /* Espaço para o header fixo */
+  min-height: calc(100vh - 70px); /* Altura total menos o header */
+}
+
+.comercio-container {
+    background: #ffffff;
+    max-width: 755px;
+    width: 85%;
+    margin: 50px auto;  /* Top e bottom com 50px e left/right automáticos */
+    padding: 20px;
+    align-items: center;
+    border-radius: 30px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    position: relative;
+    margin-top: 90px;
+}
+
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .carousel-images img {
+            min-width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            display: block;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            z-index: 2;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .carousel-button:hover {
+            opacity: 1;
+        }
+
+        .carousel-button.prev {
+            left: 15px;
+        }
+
+        .carousel-button.next {
+            right: 15px;
+        }
+
+        .comercio-info p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .comercio-info strong {
+            color: #007bff;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        .comercio-links {
+            margin-top: 30px;
+            text-align: center;
+            display: grid;
+
+        }
+
+        .comercio-links a {
+            display: inline-block;
+            align-items: none;
+            margin: 8px 12px;
+            text-decoration: none;
+            padding: 12px 22px;
+            background-color: #0066ae;
+            color: white;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+
+        .comercio-links a:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 14px rgba(0, 123, 255, 0.3);
+        }
+
+        .loading-message {
+            text-align: center;
+            font-style: italic;
+            color: #6c757d;
+        }
+
+        .error-message {
+            color: #dc3545;
+            text-align: center;
+        }
+
+        .comercio-imagem {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            object-fit: cover;
+            max-height: 250px;
+        }
+
+        .qr-section {
+            margin-top: 10px;
+            padding-top: 30px;
+            border-top: 1px solid #696969;
+            text-align: center;
+        }
+
+        .qr-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        #qrcode {
+    margin: 0 auto;
+    padding: 12px;
+    background: #000000;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin-top: 5;
+    max-width: 100px;
+    aspect-ratio: 1;
+}
+
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .comercio-container {
+                padding: 20px;
+                border-radius: 12px;
+            }
+
+            .carousel-button {
+                padding: 8px 12px;
+                font-size: 1.2rem;
+            }
+
+            .comercio-links a {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+
+            .qr-title {
+                font-size: 1rem;
+            }
+
+            #qrcode {
+                width: 140px !important;
+                height: 140px !important;
+            }
+        }
+/* Header */
+header {
+  width: 100%;
+  background: linear-gradient(135deg, #d4d4d4, #4ca3ff);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+.menu-toggle {
+  display: block;
+  background: none;
+  border: 2px solid white;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo img {
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+}
+
+.header-logo span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #cce5ff;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1001;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  nav a {
+    padding: 10px 0;
+    color: white;
+  }
+
+  nav.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+    #qrcode {
+        width: 120px;
+        height: 120px;
+    }
+}
+/* Estilo geral para o botão de impressão */
+#btnPrint {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#btnPrint:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos específicos para impressão */
+@media print {
+  /* Esconde os elementos que não fazem parte do conteúdo impresso, como header, footer e botões */
+  header,
+  footer,
+  #btnPrint {
+    display: none;
+  }
+  
+  /* Se necessário, ajuste margens e tamanhos para impressão */
+  body {
+    background: white;
+    color: black;
+  }
+  
+  /* Exemplo: adicionar uma seção com informações extras só para impressão */
+  .informacoes-impressao {
+    display: block;
+    margin-top: 20px;
+    border-top: 1px dashed #000;
+    padding-top: 10px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+}
+
+    </style>
+</head>
+<body>
+        <!-- Header -->
+        <header>
+            <div class="header-logo">
+              <img id="logo" src="./img/web_hi_res_512.png" alt="Logo">
+              <span class="header-text">Encontre</span>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">
+              <i class="fas fa-bars"></i>
+            </button>
+            <nav id="nav">
+              <a href="index.html">ver novos lugares</a>
+            </nav>
+        </header>
+        <div class="comercio-container" id="comercioContainer">
+            <p class="loading-message">Carregando detalhes do comércio...</p>
+            <!-- Botão de impressão -->
+        </div>
+        
+  <!-- Footer -->
+  <footer style="background: linear-gradient(135deg, rgba(0, 119, 255, 0.607), rgb(0, 0, 0)); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+          <img src="./img/web_hi_res_512.png" alt="Logo" style="height: 30px; margin-right: 10px;">
+          <span style="font-weight: 300; font-size: 1.2em;">Encontre Tecnologia</span>
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <div style="width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>SOBRE NÓS</strong>
+          <a href="sobre.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Sobre Nós</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>PRECISA DE AJUDA?</strong>
+          <a href="ajuda.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Ajuda</a>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+          <strong>LEGAL</strong>
+          <a href="termos.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Termos de uso</a>
+          <a href="privacidade.html" style="color: white; text-decoration: none; margin-bottom: 5px;">Política de privacidade</a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 20px;">
+        </div>
+      </div>
+      <hr style="width: 100%; border: 0.5px solid white; margin: 20px 0;">
+      <p style="font-size: 0.9em;">&copy; 2025 The Encontre Tecnologia Company. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const comercioId = urlParams.get("id");
+            const container = document.getElementById("comercioContainer");
+
+            if (!comercioId) {
+                container.innerHTML = "<p class='error-message'>ID do comércio não encontrado na URL.</p>";
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/comercios/${comercioId}`);
+                if (!response.ok) {
+                    console.error("Erro ao buscar comércio:", response.status);
+                    container.innerHTML = "<p class='error-message'>Erro ao carregar os detalhes do comércio.</p>";
+                    return;
+                }
+
+                const comercio = await response.json();
+
+                let imagens = [];
+                if (comercio.imagem_capa) imagens.push(comercio.imagem_capa);
+                if (comercio.imagem_capa_2) imagens.push(comercio.imagem_capa_2);
+                if (comercio.imagem_capa_3) imagens.push(comercio.imagem_capa_3);
+
+                let imagensHtml = "";
+                if (imagens.length > 1) {
+                    imagensHtml = `
+                        <div class="carousel-container">
+                            <div class="carousel-images" id="carouselImages">
+                                ${imagens.map(img => `<img src="${img}" alt="Imagem do comércio">`).join("")}
+                            </div>
+                            <button class="carousel-button prev" onclick="moverCarousel(-1)">❮</button>
+                            <button class="carousel-button next" onclick="moverCarousel(1)">❯</button>
+                        </div>
+                    `;
+                } else if (imagens.length === 1) {
+                    imagensHtml = `<img src="${imagens[0]}" alt="Imagem do comércio" class="comercio-imagem" />`;
+                }
+
+                const linksHtml = `
+                    <div class="comercio-links">
+                        ${comercio.link_facebook ? `<a href="${comercio.link_facebook}" target="_blank">Facebook</a>` : ""}
+                        ${comercio.link_instagram ? `<a href="${comercio.link_instagram}" target="_blank">Instagram</a>` : ""}
+                        ${comercio.link_site_pessoal ? `<a href="${comercio.link_site_pessoal}" target="_blank">Site</a>` : ""}
+                        ${comercio.endereco ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(comercio.endereco)}" target="_blank">Ver no Mapa</a>` : ""}
+                    </div>
+                `;
+
+                const currentUrl = window.location.href;
+
+                container.innerHTML = `
+                    <h2>${comercio.nome}</h2>
+                    ${imagensHtml}
+                    <div class="comercio-info">
+                        <p><strong>Categoria:</strong> ${comercio.categoria}</p>
+                        <p><strong>Endereço:</strong> ${comercio.endereco}</p>
+                        <p><strong>Horário:</strong> ${comercio.horario_funcionamento || "Não informado"}</p>
+                        <p><strong>Descrição:</strong> ${comercio.descricao || "Sem descrição"}</p>
+                        <p><strong>Contato:</strong> ${comercio.contato || "Não disponível"}</p>
+                    </div>
+                    ${linksHtml}
+                    <div class="qr-section">
+                        <div id="qrcode"></div>
+                    </div>
+                `;
+
+                new QRCode(document.getElementById("qrcode"), {
+                    text: currentUrl,
+                    width: 160,
+                    height: 160,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+
+            } catch (error) {
+                console.error("Erro ao carregar dados:", error);
+                container.innerHTML = `<p class='error-message'>Erro ao carregar os detalhes do comércio.</p>`;
+            }
+        });
+
+        let currentSlide = 0;
+        window.moverCarousel = function (direction) {
+            const imagesContainer = document.getElementById("carouselImages");
+            if (!imagesContainer) return;
+            const totalSlides = imagesContainer.children.length;
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            const offset = -currentSlide * 100;
+            imagesContainer.style.transform = `translateX(${offset}%)`;
+        };
+
+        window.toggleMenu = function () {
+  document.getElementById("nav").classList.toggle("show");
+};
+
+    </script>
+</body>
+</html>
