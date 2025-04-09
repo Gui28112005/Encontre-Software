@@ -10,106 +10,7 @@ body {
   background: linear-gradient(135deg, #ffffff, #ffffff);
   color: #2d3748;
 }
-/* Header aprimorado */
-.header {
-  width: 100%;
-  background: linear-gradient(135deg, rgba(0, 119, 255, 0.65), rgba(0, 0, 0, 0.85));
-  backdrop-filter: blur(6px);
-  padding: 15px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute; /* Modificado para 'absolute' inicialmente */
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-}
-/* Estado escondido */
-.header.hide-header {
-  transform: translateY(-100%);
-  opacity: 0;
-}
-/* Estado fixo quando não está escondido */
-.header.show-header {
-  position: fixed; /* Volta para fixed quando o header for mostrado */
-  transform: translateY(0); /* Reposiciona no topo */
-  opacity: 1;
-}
-/* Logo e Nome */
-.header-logo {
-  display: flex;
-  align-items: center;
-}
-.header-icon {
-  width: 50px;
-  height: auto;
-  margin-right: 12px;
-}
-.header-text {
-  font-size: 1.2em;
-  font-weight: 300;
-  color: #ffffff;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-/* Botões de Navegação para desktop */
-.header-buttons {
-  display: flex;
-  gap: 20px;
-}
-.header-buttons button {
-  background-color: transparent;
-  border: 2px solid #ffffff;
-  padding: 10px 25px;
-  border-radius: 25px;
-  font-size: 1em;
-  color: #ffffff;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-}
-.header-buttons button:hover {
-  background-color: #ffffff;
-  color: #000000;
-  transform: translateY(-3px);
-}
-/* Botão de Menu (Hamburger) - inicialmente oculto */
-.menu-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 1.2em;
-  left: -20;
-  cursor: pointer;
-}
-/* Responsividade - telas até 768px */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-  /* Esconde os botões de navegação e os posiciona como dropdown */
-  .header-buttons {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 10px 0;
-  }
-  /* Quando a classe 'show' for adicionada, exibe o menu */
-  .header-buttons.show {
-    display: flex;
-  }
-  .header-buttons button {
-    margin: 5px auto;
-    width: 90%;
-  }
-}
+
 /* Conteúdo principal (compensando o header fixo) */
 .content {
   margin-top: 100px; /* Espaço extra para não ficar colado no header */
@@ -319,4 +220,130 @@ button {
 }
 .business-item .visit-button:hover {
   background: #2b6cb0;
+}
+/* Header */
+header {
+  width: 100%;
+  background: linear-gradient( rgba(0, 119, 255, 0.85), rgba(136, 136, 136, 0.7) );
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+/* Responsividade */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  /* Oculta o menu por padrão */
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.542);
+    padding: 19px 0;
+  }
+  /* Exibe o menu quando a classe "show" for adicionada */
+  nav.show {
+    display: flex;
+    width: 380px;
+  }
+  nav a {
+    width: 100%;
+    margin: 5px auto;
+    text-align: center;
+  }
+}
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: -140px;
+  z-index: 1100;
+}
+
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo img {
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+}
+
+.header-logo span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #cce5ff;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1001;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  nav a {
+    padding: 10px 0;
+    color: white;
+  }
+
+  nav.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
 }
